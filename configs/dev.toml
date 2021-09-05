@@ -1,0 +1,12 @@
+Title = "Developer settings"
+
+[Settings]
+    Host="proxy"
+    HTTPSPort="8192"
+
+[DB]
+    Name="docker"
+    Host="db"
+    User="docker"
+    Password="docker"
+    Port="5432"
