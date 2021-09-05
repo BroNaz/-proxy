@@ -10,6 +10,7 @@ type TomlConfig struct {
 type Settings struct {
 	Host      string
 	HTTPSPort string
+	HTTPS     bool
 }
 
 type Database struct {

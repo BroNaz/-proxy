@@ -3,6 +3,7 @@ Title = "Developer settings"
 [Settings]
     Host = "proxy"
     HTTPSPort = "8192"
+    HTTPS = true
 
 [DB]
     Name = "docker"
