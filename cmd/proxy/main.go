@@ -7,6 +7,7 @@ import (
 	"github.com/BroNaz/proxy/internal/config"
 	"github.com/BroNaz/proxy/internal/logger"
 	"github.com/BurntSushi/toml"
+	"github.com/rs/zerolog/log"
 	errConfLog "log"
 	"runtime"
 	"time"
@@ -50,4 +51,5 @@ func main() {
 	// setup the global logger
 	logger.SetupLogging(&conf.Log)
 
+	log.Info().Msg("Proxy service started")
 }

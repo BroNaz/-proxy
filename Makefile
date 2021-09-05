@@ -3,7 +3,7 @@ GOPKGS =  ./internal/... ./cmd/...
 GODIRS = internal cmd
 MAINPKG = ./cmd/proxy
 
-.PHONY: proxy proxy+cover fmt check check-fmt vet test
+.PHONY: proxy proxy+cover fmt check check-fmt vet test ssl
 
 proxy:
 	go build -ldflags="-X \"main.versionInfo=$(VERSION_INFO)\"" -o ./bin/proxy $(MAINPKG)
@@ -34,3 +34,6 @@ test:
 
 show_coverage:
 	go tool cover -html=coverage/unit.cover.out -o coverage/cover.html
+
+ssl:
+	/bin/zsh scripts/certificatesAndKeys.sh
