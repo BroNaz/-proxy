@@ -16,3 +16,16 @@
 
 
 .idea/
+
+bin
+/doc/
+/etc/localhost.toml
+/etc/rocket.toml
+/tools/da_adv_get.json
+tools/*.adv_watch
+tools/profile/loadtest
+.idea
+.cache
+coverage/
+*.swp
+public/
