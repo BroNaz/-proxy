@@ -9,3 +9,4 @@ type Server struct {
 	httpClient *http.Client
 	config config.Settings
 }
+

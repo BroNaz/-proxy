@@ -8,6 +8,9 @@ MAINPKG = ./cmd/proxy
 proxy:
 	go build -ldflags="-X \"main.versionInfo=$(VERSION_INFO)\"" -o ./bin/proxy $(MAINPKG)
 
+ssl:
+	/bin/zsh scripts/certificatesAndKeys.sh
+
 proxy+cover:
 	go test -c -o bin/$@ -tags testrunmain $(MAINPKG) -coverpkg ./pkg/... ./cmd/...
 
@@ -34,6 +37,3 @@ test:
 
 show_coverage:
 	go tool cover -html=coverage/unit.cover.out -o coverage/cover.html
-
-ssl:
-	/bin/zsh scripts/certificatesAndKeys.sh
