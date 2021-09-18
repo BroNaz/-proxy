@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 Base="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 case `uname -s` in
     Linux*)     sslConfig=$Base/ssl/openssl.cnf;;

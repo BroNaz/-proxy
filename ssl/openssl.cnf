@@ -9,8 +9,6 @@
 HOME			= .
 RANDFILE		= $ENV::HOME/.rnd
 
-# Extra OBJECT IDENTIFIER info:
-#oid_file		= $ENV::HOME/.oid
 oid_section		= new_oids
 
 
@@ -98,10 +96,6 @@ localityName			= Locality Name (eg, city)
 0.organizationName		= Organization Name (eg, company)
 0.organizationName_default	= Internet Widgits Pty Ltd
 
-# we can do this but it is not needed normally :-)
-#1.organizationName		= Second Organization Name (eg, company)
-#1.organizationName_default	= World Wide Web Pty Ltd
-
 organizationalUnitName		= Organizational Unit Name (eg, section)
 #organizationalUnitName_default	=
 
@@ -122,10 +116,6 @@ unstructuredName		= An optional company name
 
 [ usr_cert ]
 
-# These extensions are added when 'ca' signs a request.
-
-# This goes against PKIX guidelines but some CAs do it and some software
-# requires this to avoid interpreting an end user certificate as a CA.
 
 basicConstraints=CA:FALSE
 
@@ -133,25 +123,18 @@ basicConstraints=CA:FALSE
 # This will be displayed in Netscape's comment listbox.
 nsComment			= "OpenSSL Generated Certificate"
 
-# PKIX recommendations harmless if included in all certificates.
 subjectKeyIdentifier=hash
 authorityKeyIdentifier=keyid,issuer
 
 
 [ v3_req ]
 
-# Extensions to add to a certificate request
 
 basicConstraints = CA:FALSE
 keyUsage = nonRepudiation, digitalSignature, keyEncipherment
 
 [ v3_ca ]
 
-
-# Extensions for a typical CA
-
-
-# PKIX recommendation.
 
 subjectKeyIdentifier=hash
 
@@ -162,17 +145,11 @@ basicConstraints = critical,CA:true
 
 [ crl_ext ]
 
-# CRL extensions.
-# Only issuerAltName and authorityKeyIdentifier make any sense in a CRL.
 
-# issuerAltName=issuer:copy
 authorityKeyIdentifier=keyid:always
 
 [ proxy_cert_ext ]
-# These extensions should be added when creating a proxy certificate
 
-# This goes against PKIX guidelines but some CAs do it and some software
-# requires this to avoid interpreting an end user certificate as a CA.
 
 basicConstraints=CA:FALSE
 
