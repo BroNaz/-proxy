@@ -1,16 +1,22 @@
 package main
 
 import (
+	"context"
 	"expvar"
 	"flag"
 	"fmt"
+	errConfLog "log"
+	"os"
+	"os/signal"
+	"runtime"
+	"syscall"
+	"time"
+
 	"github.com/BroNaz/proxy/internal/config"
 	"github.com/BroNaz/proxy/internal/logger"
+	"github.com/BroNaz/proxy/internal/proxy"
 	"github.com/BurntSushi/toml"
 	"github.com/rs/zerolog/log"
-	errConfLog "log"
-	"runtime"
-	"time"
 )
 
 var (
@@ -52,4 +58,16 @@ func main() {
 	logger.SetupLogging(&conf.Log)
 
 	log.Info().Msg("Proxy service started")
+
+	server, err := proxy.NewServer(conf.Settings)
+
+	// When receiving signals, we give the current requests a few seconds to complete.
+	quit := make(chan os.Signal, 1)
+	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
+	<-quit
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+	if err = server.Shutdown(ctx); err != nil {
+		log.Fatal().Err(err).Msg("не удалось нежно остановить сервер")
+	}
 }

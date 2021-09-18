@@ -1,10 +1,12 @@
 package proxy
 
 import (
-	"github.com/BroNaz/proxy/internal/config"
-	"github.com/rs/zerolog/log"
+	"context"
 	"net/http"
 	"time"
+
+	"github.com/BroNaz/proxy/internal/config"
+	"github.com/rs/zerolog/log"
 )
 
 type Server struct {
@@ -28,5 +30,10 @@ func NewServer(config config.Settings) (*Server, error) {
 func (s *Server) Run() error {
 	log.Info().Msg("Server run")
 
+	return nil
+}
+
+func (s *Server) Shutdown(ctx context.Context) error {
+	log.Info().Msg("gently stopping the server")
 	return nil
 }
