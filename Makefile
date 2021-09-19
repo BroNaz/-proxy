@@ -37,3 +37,5 @@ test:
 
 show_coverage:
 	go tool cover -html=coverage/unit.cover.out -o coverage/cover.html
+
+/DEFAULT_GOAL := proxy

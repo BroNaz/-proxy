@@ -59,7 +59,7 @@ func main() {
 
 	log.Info().Msg("Proxy service started")
 
-	server, err := proxy.NewServer(conf.Settings, conf.Addr)
+	server := proxy.NewServer(conf.Settings, conf.Addr)
 
 	go func() {
 		if err := server.Run(); err != nil {
@@ -73,7 +73,7 @@ func main() {
 	<-quit
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	if err = server.Shutdown(ctx); err != nil {
+	if err := server.Shutdown(ctx); err != nil {
 		log.Fatal().Err(err).Msg("failed to gently stop the server")
 	}
 }
