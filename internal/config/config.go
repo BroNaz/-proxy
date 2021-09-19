@@ -5,6 +5,7 @@ type TomlConfig struct {
 	Settings Settings
 	DB       Database
 	Log      LogConfig `toml:"Logger"`
+	Addr     string
 }
 
 type Settings struct {

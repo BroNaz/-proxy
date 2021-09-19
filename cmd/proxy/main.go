@@ -59,7 +59,13 @@ func main() {
 
 	log.Info().Msg("Proxy service started")
 
-	server, err := proxy.NewServer(conf.Settings)
+	server, err := proxy.NewServer(conf.Settings, conf.Addr)
+
+	go func() {
+		if err := server.Run(); err != nil {
+			log.Fatal().Err(err).Msg("server ended")
+		}
+	}()
 
 	// When receiving signals, we give the current requests a few seconds to complete.
 	quit := make(chan os.Signal, 1)
@@ -68,6 +74,6 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 	if err = server.Shutdown(ctx); err != nil {
-		log.Fatal().Err(err).Msg("не удалось нежно остановить сервер")
+		log.Fatal().Err(err).Msg("failed to gently stop the server")
 	}
 }

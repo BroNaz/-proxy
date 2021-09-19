@@ -1,5 +1,7 @@
 Title = "Developer settings"
 
+Addr = ":18031"
+
 [Settings]
     Host = "proxy"
     HTTPSPort = "8192"

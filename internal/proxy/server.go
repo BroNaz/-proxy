@@ -10,15 +10,17 @@ import (
 )
 
 type Server struct {
+	Addr       string
 	httpClient *http.Client
 	config     config.Settings
 }
 
-func NewServer(config config.Settings) (*Server, error) {
+func NewServer(config config.Settings, addr string) (*Server, error) {
 	log.Debug().Msg("Server began to form")
 
 	server := new(Server)
 	server.config = config
+	server.Addr = addr
 
 	server.httpClient = new(http.Client)
 	server.httpClient.Timeout = 5 * time.Second
@@ -29,6 +31,10 @@ func NewServer(config config.Settings) (*Server, error) {
 
 func (s *Server) Run() error {
 	log.Info().Msg("Server run")
+
+	log.Info().
+		Str("addr", s.Addr).
+		Msg("the server starts listening")
 
 	return nil
 }
